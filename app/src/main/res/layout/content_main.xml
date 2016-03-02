@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
+    android:layout_marginTop="50dp"
     >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Employees"
-        android:layout_margin="5dp"/>
+
     <fragment
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="match_parent"
         android:id="@+id/employeeListFragmentId"
         class="com.edocent.employeeapp.data.EmployeeListFragment"
         android:layout_margin="10dp"
         />
+    <fragment
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="match_parent"
+        android:id="@+id/detailFragmentId"
+        class="com.edocent.employeeapp.data.EmployeeDetailFragment"/>
 </LinearLayout>
