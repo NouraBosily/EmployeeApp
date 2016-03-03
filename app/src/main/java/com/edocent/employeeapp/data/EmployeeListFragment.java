@@ -10,12 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.edocent.employeeapp.R;
-import com.edocent.employeeapp.data.dummy.DummyContent;
-import com.edocent.employeeapp.data.dummy.DummyContent.DummyItem;
-
-import java.util.List;
-
 public class EmployeeListFragment extends ListFragment{
 
     private static final String TAG = EmployeeListFragment.class.getSimpleName();
