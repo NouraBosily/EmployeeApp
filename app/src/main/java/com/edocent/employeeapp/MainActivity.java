@@ -1,19 +1,22 @@
 package com.edocent.employeeapp;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.edocent.employeeapp.data.Employee;
+import com.edocent.employeeapp.data.EmployeeDetailFragment;
 import com.edocent.employeeapp.data.EmployeeListFragment;
-import com.edocent.employeeapp.data.dummy.DummyContent;
 
-public class MainActivity extends AppCompatActivity implements EmployeeListFragment.OnListFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements EmployeeListFragment.EmployeeListFragmentInterface{
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +57,20 @@ public class MainActivity extends AppCompatActivity implements EmployeeListFragm
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void callEmployeeDetail(long employeeIndex) {
+        Log.v(TAG, "In Main Activity got the following index "+employeeIndex);
+        //Create the detail Fragment Object
+        EmployeeDetailFragment employeeDetailFragment = new EmployeeDetailFragment();
+        employeeDetailFragment.setEmployeeIndex(employeeIndex);
+
+        //Start Fragment Transaction
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.detailFragmentId, employeeDetailFragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
 
     }
 }
