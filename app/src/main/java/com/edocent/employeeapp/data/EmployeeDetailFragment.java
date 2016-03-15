@@ -20,10 +20,18 @@ public class EmployeeDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        if(savedInstanceState != null){
+            employeeIndex = savedInstanceState.getLong("employeeIndex");
+        }
+
         return inflater.inflate(R.layout.fragment_employee_detail, container, false);
     }
 
     public void setEmployeeIndex(long employeeIndex) {
         this.employeeIndex = employeeIndex;
+    }
+
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        savedInstanceState.putLong("employeeIndex", employeeIndex);
     }
 }
