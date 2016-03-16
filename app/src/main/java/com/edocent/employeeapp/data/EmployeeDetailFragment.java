@@ -31,6 +31,7 @@ public class EmployeeDetailFragment extends Fragment {
         this.employeeIndex = employeeIndex;
     }
 
+    @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
         savedInstanceState.putLong("employeeIndex", employeeIndex);
     }
