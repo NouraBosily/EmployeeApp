@@ -61,16 +61,24 @@ public class MainActivity extends AppCompatActivity implements EmployeeListFragm
     @Override
     public void callEmployeeDetail(long employeeIndex) {
         Log.v(TAG, "In Main Activity got the following index "+employeeIndex);
-        //Create the detail Fragment Object
-        EmployeeDetailFragment employeeDetailFragment = new EmployeeDetailFragment();
-        employeeDetailFragment.setEmployeeIndex(employeeIndex);
 
-        //Start Fragment Transaction
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.detailFragmentId, employeeDetailFragment);
-        ft.addToBackStack(null);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.commit();
+        //Check if the FrameLayout is being used
+
+        View frameLayoutView = findViewById(R.id.detailFragmentId);
+        if(frameLayoutView != null){
+            //Create the detail Fragment Object
+            EmployeeDetailFragment employeeDetailFragment = new EmployeeDetailFragment();
+            employeeDetailFragment.setEmployeeIndex(employeeIndex);
+
+            //Start Fragment Transaction
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.detailFragmentId, employeeDetailFragment);
+            ft.addToBackStack(null);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
+        }else{
+            //Call Detail Activity
+        }
 
     }
 }
