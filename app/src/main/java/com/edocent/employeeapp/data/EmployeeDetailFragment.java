@@ -2,6 +2,7 @@ package com.edocent.employeeapp.data;
 
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,15 @@ public class EmployeeDetailFragment extends Fragment {
         if(savedInstanceState != null){
             employeeIndex = savedInstanceState.getLong("employeeIndex");
         }
+
+        //Handle the Child Fragment. For demo purpose I haven't created a new Fragment
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        EmployeeListFragment elf = new EmployeeListFragment();
+        ft.replace(R.id.employeeAddressFragmentId, elf);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.addToBackStack(null);
+        ft.commit();
+        //End
 
         return inflater.inflate(R.layout.fragment_employee_detail, container, false);
     }
