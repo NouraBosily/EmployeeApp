@@ -7,10 +7,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.edocent.employeeapp.R;
 
-public class EmployeeDetailFragment extends Fragment {
+public class EmployeeDetailFragment extends Fragment implements View.OnClickListener{
 
     long employeeIndex;
 
@@ -25,6 +26,11 @@ public class EmployeeDetailFragment extends Fragment {
             employeeIndex = savedInstanceState.getLong("employeeIndex");
         }
 
+        View layout = inflater.inflate(R.layout.fragment_employee_detail, container, false);
+        Button testButton = (Button) layout.findViewById(R.id.testButtonId);
+
+        testButton.setOnClickListener(this);
+
         //Handle the Child Fragment. For demo purpose I haven't created a new Fragment
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
         EmployeeListFragment elf = new EmployeeListFragment();
@@ -34,7 +40,7 @@ public class EmployeeDetailFragment extends Fragment {
         ft.commit();
         //End
 
-        return inflater.inflate(R.layout.fragment_employee_detail, container, false);
+        return layout;
     }
 
     public void setEmployeeIndex(long employeeIndex) {
@@ -44,5 +50,19 @@ public class EmployeeDetailFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
         savedInstanceState.putLong("employeeIndex", employeeIndex);
+    }
+
+    /**
+     * Called when a view has been clicked.
+     *
+     * @param v The view that was clicked.
+     */
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.testButtonId:
+                //Do something
+                break;
+        }
     }
 }
